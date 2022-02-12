@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Server {
+    /**
+     * list of all connections (chat server users)
+     */
     List<Client> clientList = new ArrayList();
     ServerSocket serverSocket;
 
@@ -14,25 +17,24 @@ public class Server {
 
     public void run() {
         while (true) {
-            System.out.println("Waiting....");
             try {
                 Socket socket = serverSocket.accept();
-
                 Client client = new Client(socket, this);
-                System.out.println("New client is connected");
                 clientList.add(client);
-
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
 
-    void sendAll(String message) {
+    /**
+     * @param message- String value that will be received from the Client
+     *                 (usually entered by the user) and sent to all chat users
+     */
+    public void sendMessageToAll(String message) {
         for (Client client : clientList) {
             client.receive(message);
         }
     }
-
 
 }
