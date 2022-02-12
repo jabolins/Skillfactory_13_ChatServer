@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Server {
     /**
-     * list of all connections (chat server users)
+     * list of all connections (all chat server users)
      */
     List<Client> clientList = new ArrayList();
     ServerSocket serverSocket;
